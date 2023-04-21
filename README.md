@@ -12,7 +12,8 @@ He has next commands:
 ```
 
 Use:
-- Python
+- Python (v 3.8.1)
+- pip (v 19.2.3)
 - Aiogram (v 2.25)
 - pyowm (library for openweather api)
 - animals.py (library for some-random-api)
