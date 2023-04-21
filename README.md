@@ -15,13 +15,13 @@ Use:
 - Python
 - Aiogram (v 2.25)
 - pyowm (library for openweather api)
-- animality (library for random animal api)
+- animals.py (library for some-random-api)
 
 
 Use apis:
 - telegram api
 - OpenWeatherMap api (throw pyowm) (https://openweathermap.org/api)
-- animality api (throw python animality) (https://animality.xyz/)
+- some-random-api (throw python animality) (https://some-random-api.ml/)
 - exchangerates api (https://exchangeratesapi.io/)
 
 ### Quick start
