@@ -1,14 +1,19 @@
+import logging
+
 from aiogram import Dispatcher, types
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import StatesGroup, State
 
 from telebot.commands import get_bot_command_manager
-from telebot.services.currency_conversion_service import CurrencyBadRequestError, CurrencyUnknownError
+from telebot.services.currency_conversion_service import CurrencyBadRequestError, CurrencyUnknownError, \
+    CurrencyUnauthorizedError
 from telebot.services import Service
 
 
 EXAMPLE_CURRENCY_CODE_URL = "http://www.consultant.ru/document/cons_doc_LAW_31966" \
                             "/5ebb56e60f3126b262bd44c2e7d258fea7179649/"
+
+logger = logging.getLogger()
 
 
 class CurrencyConversionState(StatesGroup):
@@ -75,6 +80,9 @@ async def process_to_code(msg: types.Message, state: FSMContext, services: Servi
         except CurrencyBadRequestError as _exc:
             await msg.answer(text=f"Вы ввели неправильный код валюты или неправильную сумму! Попробуйте еще раз.\n"
                                   f"Код валюты вы можете найти на сайте {EXAMPLE_CURRENCY_CODE_URL}")
+        except CurrencyUnauthorizedError as _exc:
+            logger.error("Currency token is unavailable")
+            await msg.answer(text=f"На сервере произошла техническая ошибка! Обратитесь к системному администратору!")
         except CurrencyUnknownError as _exc:
             await msg.answer(text=f"На сервере произошла неизвестная ошибка! "
                                   f"Код валюты вы можете найти на сайте {EXAMPLE_CURRENCY_CODE_URL}")

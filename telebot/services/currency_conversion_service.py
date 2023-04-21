@@ -25,6 +25,13 @@ class CurrencyUnknownError(BaseCurrencyError):
     pass
 
 
+class CurrencyUnauthorizedError(BaseCurrencyError):
+    """
+    Exception on error token
+    """
+    pass
+
+
 class CurrencyConversionService(CurrencyConversionAbstract):
     base_url = "https://api.apilayer.com/exchangerates_data/"
 
@@ -84,7 +91,9 @@ class CurrencyConversionService(CurrencyConversionAbstract):
             return float(result)
         elif status_code == HTTPStatus.BAD_REQUEST:
             raise CurrencyBadRequestError()
-        logger.error("Unknown response code", extra={
+        elif status_code == HTTPStatus.UNAUTHORIZED:
+            raise CurrencyUnauthorizedError()
+        logger.error(f"Unknown response code {status_code}", extra={
             "server_response": response,
             "user_params": params,
         })

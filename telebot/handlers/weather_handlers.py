@@ -6,6 +6,7 @@ from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.dispatcher import FSMContext
 
 from telebot.commands.commands import get_bot_command_manager
+from telebot.models import BaseWeather
 from telebot.services.services import Service
 from telebot.services.weather_service import CityNotFoundError, WeatherApiUnauthorizedError
 
