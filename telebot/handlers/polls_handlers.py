@@ -10,7 +10,6 @@ from telebot.keyboards import (
     create_share_chat_kb,
     remove_poll_kb
 )
-# from telebot.services.create_polls_service import NotFoundPollError
 from telebot.services import Service
 
 

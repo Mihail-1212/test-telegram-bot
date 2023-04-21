@@ -1,14 +1,12 @@
 from abc import ABC, abstractmethod
 from typing import List
 
-from pyowm.weatherapi25.weather import Weather
-
-from telebot.models import UserPoll
+from telebot.models import UserPoll, BaseWeather
 
 
 class WeatherAbstract(ABC):
     @abstractmethod
-    def get_weather_by_city(self, city_name: str) -> Weather:
+    def get_weather_by_city(self, city_name: str) -> BaseWeather:
         raise NotImplementedError()
 
 

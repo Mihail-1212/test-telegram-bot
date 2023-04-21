@@ -5,12 +5,9 @@ from aiogram import Dispatcher, types
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.dispatcher import FSMContext
 
-from pyowm.weatherapi25.weather import Weather
-from pyowm.commons.exceptions import NotFoundError
-
 from telebot.commands.commands import get_bot_command_manager
 from telebot.services.services import Service
-
+from telebot.services.weather_service import CityNotFoundError, WeatherApiUnauthorizedError
 
 logger = logging.getLogger()
 
@@ -45,10 +42,14 @@ async def process_city_weather(message: types.Message, state: FSMContext, servic
     # Stop asking for city name
     await state.finish()
     try:
-        current_weather: Weather = services.weather_service.get_weather_by_city(city_name)
-    except NotFoundError as _exc:
+        current_weather: BaseWeather = services.weather_service.get_weather_by_city(city_name)
+    except CityNotFoundError as _exc:
         logger.info(f"City {city_name} was not found")
         return await message.answer(text="Город с таким названием не был найден, повторите попытку.")
+    except WeatherApiUnauthorizedError as _exc:
+        # If token is invalid
+        logger.error("Weather token is invalid")
+        return await message.answer(text="Ошибка на сервере! Обратитесь к системному администратору!")
 
     answer_message = f"""
 Погода в указанном месте такова: 
