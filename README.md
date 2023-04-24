@@ -2,7 +2,7 @@
 
 This is test telegram chatbot.
 
-He has next commands:
+It have next commands:
 ```commandline
 /start - Start conversation
 /weather - Get weather from input place
@@ -11,7 +11,7 @@ He has next commands:
 /createsendpolls - Create polls and send to chat
 ```
 
-Use:
+Used:
 - Python (v 3.8.1)
 - pip (v 19.2.3)
 - Aiogram (v 2.25)
@@ -19,10 +19,10 @@ Use:
 - animals.py (library for some-random-api)
 
 
-Use apis:
+Used apis:
 - telegram api
-- OpenWeatherMap api (throw pyowm) (https://openweathermap.org/api)
-- some-random-api (throw python animality) (https://some-random-api.ml/)
+- OpenWeatherMap api (used pyowm) (https://openweathermap.org/api)
+- some-random-api (used python animality) (https://some-random-api.ml/)
 - exchangerates api (https://exchangeratesapi.io/)
 
 ### Quick start
