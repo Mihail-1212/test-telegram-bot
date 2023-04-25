@@ -18,7 +18,7 @@ class CurrencyConversionAbstract(ABC):
 
 class RandomAnimalAbstract(ABC):
     @abstractmethod
-    async def get_random_animal_image_url(self) -> str:
+    def get_random_animal_image_url(self) -> str:
         raise NotImplementedError()
 
 

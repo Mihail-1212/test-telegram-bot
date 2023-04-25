@@ -19,7 +19,7 @@ async def cmd_random_animal(msg: types.Message, services: Service) -> Any:
     """
     random_image: str = ""
     try:
-        random_image = await services.random_animal_service.get_random_animal_image_url()
+        random_image = services.random_animal_service.get_random_animal_image_url()
         return await msg.bot.send_photo(msg.chat.id, random_image)
     except InvalidHTTPUrlContent as _exc:
         """
